@@ -51,7 +51,7 @@ jobs:
         run: yarn install
 
       - name: Build NAPI module for ARM64
-        run: yarn build --platform --release --target aarch64-unknown-linux-gnu
+        run: npm build --platform --release --target aarch64-unknown-linux-gnu
 
 
 
