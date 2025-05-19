@@ -51,7 +51,7 @@ jobs:
         run: yarn install
 
       - name: Build NAPI module for ARM64
-        run: napi build --platform --release
+        run: yarn build --platform --release
 
 
 
