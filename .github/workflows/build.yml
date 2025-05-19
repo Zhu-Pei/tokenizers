@@ -51,14 +51,18 @@ jobs:
         run: yarn install
 
       - name: Build NAPI module for ARM64
-        run: yarn build --platform --release
+        run: yarn build --platform --release --target aarch64-unknown-linux-gnu
 
       - name: Check generated .node file
         run: ls -lh npm/aarch64-unknown-linux-gnu
-
+        
+      - name: Debug:list npm directory
+        run: find npm -type f -exec ls -lh {} \;
+        
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
           files: npm/aarch64-unknown-linux-gnu/index.node
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
