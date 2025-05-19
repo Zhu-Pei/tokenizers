@@ -37,6 +37,13 @@ jobs:
           echo "CC_aarch64_unknown_linux_gnu=aarch64-linux-gnu-gcc" >> $GITHUB_ENV
           echo "CXX_aarch64_unknown_linux_gnu=aarch64-linux-gnu-g++" >> $GITHUB_ENV
 
+      - name: Configure Cargo for Cross Compilation
+        run: |
+          mkdir -p .cargo
+          echo '[target.aarch64-unknown-linux-gnu]' > .cargo/config.toml
+          echo 'linker = "aarch64-linux-gnu-gcc"' >> .cargo/config.toml
+
+
       - name: Install QEMU
         uses: docker/setup-qemu-action@v2
         with:
