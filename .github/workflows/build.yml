@@ -55,10 +55,14 @@ jobs:
       - name: Build NAPI module for ARM64
         run: yarn build --target aarch64-unknown-linux-gnu
 
-      - name: Upload to GitHub Release
+      - name: Check node output
+        run: ls -lh target/aarch64-unknown-linux-gnu/release
+
+
+      - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
-          files: target/aarch64-unknown-linux-gnu/release/*.node
+          files: target/aarch64-unknown-linux-gnu/release/tokenizers.node
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
